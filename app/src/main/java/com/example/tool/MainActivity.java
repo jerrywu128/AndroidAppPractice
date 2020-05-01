@@ -1,14 +1,17 @@
 package com.example.tool;
 
 import android.animation.ObjectAnimator;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -26,12 +29,18 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.b6,R.drawable.b7,R.drawable.b8,R.drawable.b9,R.drawable.b10,
             R.drawable.b11,R.drawable.b12,R.drawable.b13,};
 
+    int[] point ={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
+            21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
+            41,42,43,44,45,46,47,48,49,50,51,52};
+
     int HowManyCard = imgId.length;
     int use=0;
     int number[]=imgId;
+    int point2[] = point;
+    poker countpoint = new poker();
 
     private Button puls;
-    private ImageView poker,you_poker,rightp;
+    private ImageView pokerback,you_poker,rightp;
     private TextView nn;
 
 
@@ -45,11 +54,13 @@ public class MainActivity extends AppCompatActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         puls = (Button)findViewById(R.id.puls);
-        poker = (ImageView)findViewById(R.id.poker);
+        pokerback = (ImageView)findViewById(R.id.pokerback);
         you_poker = (ImageView)findViewById(R.id.you_poker);
         nn = (TextView)findViewById(R.id.nn);
         rightp = (ImageView)findViewById(R.id.rightp);
+
         puls.setOnClickListener(pulsLin);
+
 
         if (use < HowManyCard) {
 
@@ -70,10 +81,11 @@ public class MainActivity extends AppCompatActivity {
             ObjectAnimator.start();
 
             rightp.setImageResource(number[p]);
-
+            countpoint.Score(point2[p]);
 
             int i;
             for (i = p; i < count - 1; i++) {
+                point2[i] = point2[i+1];
                 number[i] = number[i + 1];
             }
 
@@ -100,10 +112,37 @@ public class MainActivity extends AppCompatActivity {
                         nn.setText("剩餘牌數："+ list);
                         int i;
                         for (i = p; i < count - 1; i++) {
+                            point2[i] = point2[i+1];
                             number[i] = number[i + 1];
                         }
                     }
                 }
             };
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {//是否按下返回鍵
+        if ((keyCode == KeyEvent.KEYCODE_BACK)) {
+            ConfirmExit();//按返回鍵，執行退出確認
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+    public void ConfirmExit(){//退出確認
+        AlertDialog.Builder ad=new AlertDialog.Builder(MainActivity.this);
+        ad.setTitle("離開");
+        ad.setMessage("確定要離開此程式嗎?");
+        ad.setPositiveButton("是", new DialogInterface.OnClickListener() {//退出按鈕
+            public void onClick(DialogInterface dialog, int i) {
+                // TODO Auto-generated method stub
+                MainActivity.this.finish();
+            }
+        });
+        ad.setNegativeButton("否",new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int i) {
+
+            }
+        });
+        ad.show();
+    }
 
 }
