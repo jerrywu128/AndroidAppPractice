@@ -9,7 +9,9 @@ public class poker {
 	public float now = 0;
 	int count = 0;
 
-	public float Score(int input) {
+	public float Score(int input)
+	{
+
 
 		if ((input % 13) > 10 || (input % 13) == 0) {
 			if(count<2){
@@ -18,7 +20,7 @@ public class poker {
 			}
 
 			now += 0.5;
-			return now;
+
 
 		}
 		else {
@@ -27,9 +29,9 @@ public class poker {
 				now = 0;
 			}
 			now += (input % 13);
-			return now;
 
 		}
+		return now;
 
 	}
 
