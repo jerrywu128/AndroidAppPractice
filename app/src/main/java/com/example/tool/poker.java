@@ -1,48 +1,36 @@
+
 package com.example.tool;
 
-import android.widget.TextView;
 
-import java.util.Scanner;
-
-public class poker
-	{
-
-		private static float now=0;
-		//public static boolean quit=false;
+public class poker {
 
 
-		public void Score(int input){
-		
-		if(input%13>10){	//�I�Ƭۥ[
-			now+=0.5;
+	//public static boolean quit=false;
+	public float now = 0;
+	int count = 0;
+
+	public float Score(int input) {
+
+		if ((input % 13) > 10 || (input % 13) == 0) {
+			if(count<2){
+				count++;
+				now = 0;
+			}
+
+			now += 0.5;
+			return now;
+
 		}
-		else{
-			now+=input;
+		else {
+			if(count<2){
+				count++;
+				now = 0;
+			}
+			now += (input % 13);
+			return now;
+
 		}
 
-		if(now<=10.5){  //��X�I��
-			System.out.println(now);
-		}
-		
-		else{
-			System.out.print("Error");
-			//quit=true;
-		}	
-		
 	}
-	
-	public static void main(String[] args)
-	{ 
-		/*int num=0;
-		
-		Scanner scanner = new Scanner(System.in);
-		
-		poker test=new poker();
 
-		while(!quit)
-		{	
-			System.out.print("��J�I��:");
-			test.Score(num = scanner.nextInt());
-		}*/
-	}
 }
