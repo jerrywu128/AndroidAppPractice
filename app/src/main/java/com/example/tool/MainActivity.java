@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
         puls = (Button)findViewById(R.id.puls);
         pokerback = (ImageView)findViewById(R.id.pokerback);
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
             float a = countpoint.Score(point2[p]);
             nowpoint.setText(String.valueOf(a));
-            inputpoint.setText("input: "+point2[p]);
+            //inputpoint.setText("input: "+point2[p]);
 
             ObjectAnimator= android.animation.ObjectAnimator.ofFloat(you_poker,"x",1200);
             ObjectAnimator.setDuration(1000);
@@ -101,8 +100,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private final Button.OnClickListener pulsLin = new
-            Button.OnClickListener() {
+    private final Button.OnClickListener
+            pulsLin = new Button.OnClickListener() {
                 public void onClick(View v) {
 
                     if (use < HowManyCard) {
@@ -116,8 +115,14 @@ public class MainActivity extends AppCompatActivity {
                         nn.setText("剩餘牌數："+ list);
 
                         float a = countpoint.Score(point2[p]);
-                        nowpoint.setText(String.valueOf(a));
-                        inputpoint.setText("input: " + point2[p]);
+                        if(a<=10.5)
+                            nowpoint.setText(String.valueOf(a));
+                        else {
+                            nowpoint.setText("爆點啦!");
+                            puls.setEnabled(false);
+                            inputpoint.setText("你目前點數: " + a);
+                        }
+
 
                         int i;
                         for (i = p; i < count - 1; i++) {
