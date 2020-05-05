@@ -1,6 +1,6 @@
 package com.example.tool;
 
-import android.animation.ObjectAnimator;
+
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -41,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button puls;
     private ImageView pokerback,you_poker,rightp;
-    private TextView nn;
+    private TextView nn,nowpoint,inputpoint;
 
 
     android.animation.ObjectAnimator ObjectAnimator;
@@ -58,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
         you_poker = (ImageView)findViewById(R.id.you_poker);
         nn = (TextView)findViewById(R.id.nn);
         rightp = (ImageView)findViewById(R.id.rightp);
+        nowpoint =(TextView)findViewById(R.id.nowpoint);
+        inputpoint=(TextView)findViewById(R.id.inputpoint);
 
         puls.setOnClickListener(pulsLin);
 
@@ -67,16 +68,19 @@ public class MainActivity extends AppCompatActivity {
             int count = number.length - use;
             int p = (int) (Math.random() * count);
             you_poker.setImageResource(number[p]);
+
             use++;
 
             int list = count-1;
             nn.setText("剩餘牌數："+ list);
 
-            ObjectAnimator= android.animation.ObjectAnimator.ofFloat(you_poker,"x",900);
+            float a = countpoint.Score(point2[p]);
+            nowpoint.setText(String.valueOf(a));
+            inputpoint.setText("input: "+point2[p]);
 
-
-
+            ObjectAnimator= android.animation.ObjectAnimator.ofFloat(you_poker,"x",1200);
             ObjectAnimator.setDuration(1000);
+
             Handler handler = new Handler();
             ObjectAnimator.start();
 
@@ -110,11 +114,17 @@ public class MainActivity extends AppCompatActivity {
 
                         int list = count-1;
                         nn.setText("剩餘牌數："+ list);
+
+                        float a = countpoint.Score(point2[p]);
+                        nowpoint.setText(String.valueOf(a));
+                        inputpoint.setText("input: " + point2[p]);
+
                         int i;
                         for (i = p; i < count - 1; i++) {
                             point2[i] = point2[i+1];
                             number[i] = number[i + 1];
                         }
+
                     }
                 }
             };
