@@ -42,8 +42,11 @@
         android:layout_height="54dp"
         android:layout_x="10dp"
         android:layout_y="637dp"
+        android:clickable="false"
+        android:editable="false"
+        android:enabled="true"
         android:text="補牌"
-        android:textSize="30sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.062"
@@ -123,13 +126,14 @@
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
         android:layout_marginTop="40dp"
-        android:text="TextView"
-        android:textSize="30sp"
+        android:enabled="true"
+        android:text=""
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/puls"
         app:layout_constraintEnd_toStartOf="@+id/nn"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nowpoint"
-        app:layout_constraintVertical_bias="0.064" />
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
