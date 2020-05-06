@@ -46,7 +46,7 @@
         android:editable="false"
         android:enabled="true"
         android:text="補牌"
-        android:textSize="18sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.062"
@@ -62,10 +62,10 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.37" />
+        app:layout_constraintVertical_bias="0.276" />
 
     <ImageView
         android:id="@+id/pokerback"
@@ -109,31 +109,28 @@
 
     <TextView
         android:id="@+id/nowpoint"
-        android:layout_width="145dp"
+        android:layout_width="245dp"
         android:layout_height="59dp"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/puls"
-        app:layout_constraintEnd_toStartOf="@+id/cat"
-        app:layout_constraintHorizontal_bias="0.191"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/rightp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.814"
+        app:layout_constraintStart_toEndOf="@+id/cat"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.114" />
+        app:layout_constraintVertical_bias="0.164" />
 
     <TextView
         android:id="@+id/inputpoint"
         android:layout_width="144dp"
         android:layout_height="60dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="40dp"
         android:enabled="true"
         android:text=""
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/puls"
-        app:layout_constraintEnd_toStartOf="@+id/nn"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintBottom_toTopOf="@+id/pokerback"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nowpoint"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/nn"
+        app:layout_constraintVertical_bias="0.476" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

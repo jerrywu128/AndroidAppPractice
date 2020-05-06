@@ -50,10 +50,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 199d6ee5288f86e0d617ae44aba39eeeb274964b
 
         puls = (Button)findViewById(R.id.puls);
         pokerback = (ImageView)findViewById(R.id.pokerback);
@@ -78,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
             nn.setText("剩餘牌數："+ list);
 
             float a = countpoint.Score(point2[p]);
-            nowpoint.setText(String.valueOf(a));
-            //inputpoint.setText("input: "+point2[p]);
+            nowpoint.setText("目前點數： "+String.valueOf(a));
 
             ObjectAnimator= android.animation.ObjectAnimator.ofFloat(you_poker,"x",1200);
             ObjectAnimator.setDuration(1000);
@@ -120,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
                         float a = countpoint.Score(point2[p]);
                         if(a<=10.5)
-                            nowpoint.setText(String.valueOf(a));
+                            nowpoint.setText("目前點數： "+ String.valueOf(a));
                         else {
                             nowpoint.setText("爆點啦!");
                             puls.setEnabled(false);
