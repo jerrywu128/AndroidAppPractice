@@ -3,6 +3,7 @@ package com.example.tool;
 
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
+import android.graphics.Path;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
@@ -51,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-
         puls = (Button)findViewById(R.id.puls);
         pokerback = (ImageView)findViewById(R.id.pokerback);
         you_poker = (ImageView)findViewById(R.id.you_poker);
@@ -77,11 +77,13 @@ public class MainActivity extends AppCompatActivity {
             float a = countpoint.Score(point2[p]);
             nowpoint.setText("目前點數： "+String.valueOf(a));
 
-            ObjectAnimator= android.animation.ObjectAnimator.ofFloat(you_poker,"x",1200);
+            android.graphics.Path path = new Path();
+            path.arcTo(500f,0f,1000f,800f,180f,140f,true);
+            ObjectAnimator= android.animation.ObjectAnimator.ofFloat(you_poker,View.X,View.Y,path);
             ObjectAnimator.setDuration(1000);
+            ObjectAnimator.start();
 
             Handler handler = new Handler();
-            ObjectAnimator.start();
 
             rightp.setImageResource(number[p]);
             countpoint.Score(point2[p]);
@@ -129,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
                             point2[i] = point2[i+1];
                             number[i] = number[i + 1];
                         }
+
 
                     }
                 }
