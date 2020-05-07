@@ -7,7 +7,6 @@ public class AI
 	public boolean determine(float reading)
 	{
 		count++;
-		System.out.println("¥Ø«eµP¼Æ"+count);
 		if(count==1)
 		{	
 			if(reading<=6)
