@@ -37,10 +37,12 @@ public class MainActivity extends AppCompatActivity {
     int use=0;
     int number[]=imgId;
     int point2[] = point;
+    int countri=1;
     poker countpoint = new poker();
 
     private Button puls;
-    private ImageView pokerback,you_poker,rightp;
+    private ImageView pokerback,you_poker;
+    private ImageView[] rightp = new ImageView[5];
     private TextView nn,nowpoint,inputpoint;
 
 
@@ -56,7 +58,13 @@ public class MainActivity extends AppCompatActivity {
         pokerback = (ImageView)findViewById(R.id.pokerback);
         you_poker = (ImageView)findViewById(R.id.you_poker);
         nn = (TextView)findViewById(R.id.nn);
-        rightp = (ImageView)findViewById(R.id.rightp);
+
+        rightp[0] = (ImageView)findViewById(R.id.rightp);
+        rightp[1] = (ImageView)findViewById(R.id.rightp2);
+        rightp[2] = (ImageView)findViewById(R.id.rightp3);
+        rightp[3] = (ImageView)findViewById(R.id.rightp4);
+        rightp[4] = (ImageView)findViewById(R.id.rightp5);
+
         nowpoint =(TextView)findViewById(R.id.nowpoint);
         inputpoint=(TextView)findViewById(R.id.inputpoint);
 
@@ -84,8 +92,8 @@ public class MainActivity extends AppCompatActivity {
             ObjectAnimator.start();
 
             Handler handler = new Handler();
+            rightp[0].setImageResource(number[p]);
 
-            rightp.setImageResource(number[p]);
             countpoint.Score(point2[p]);
 
             int i;
@@ -112,7 +120,8 @@ public class MainActivity extends AppCompatActivity {
                         int p = (int) (Math.random() * count);
                         you_poker.setImageResource(number[p]);
                         use++;
-
+                        rightp[countri].setImageResource(number[p]);
+                        countri++;
                         int list = count-1;
                         nn.setText("剩餘牌數："+ list);
 
