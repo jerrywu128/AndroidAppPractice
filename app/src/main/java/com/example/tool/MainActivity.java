@@ -4,10 +4,13 @@ package com.example.tool;
 import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.graphics.Path;
+import android.net.wifi.p2p.WifiP2pManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private Button puls;
     private ImageView pokerback,you_poker;
     private ImageView[] rightp = new ImageView[5];
-    private TextView nn,nowpoint,inputpoint;
+    private TextView nn,nowpoint,inputpoint,yy;
 
 
     android.animation.ObjectAnimator ObjectAnimator;
@@ -84,13 +87,17 @@ public class MainActivity extends AppCompatActivity {
 
             float a = countpoint.Score(point2[p]);
             nowpoint.setText("目前點數： "+String.valueOf(a));
-
+/*
             android.graphics.Path path = new Path();
             path.arcTo(500f,0f,1000f,800f,180f,140f,true);
             ObjectAnimator= android.animation.ObjectAnimator.ofFloat(you_poker,View.X,View.Y,path);
             ObjectAnimator.setDuration(1000);
             ObjectAnimator.start();
-
+*/
+            Animation am = new TranslateAnimation(0,759,0,-259);
+            am.setDuration(5000);
+            you_poker.setAnimation(am);
+            am.startNow();
             Handler handler = new Handler();
             rightp[0].setImageResource(number[p]);
 
