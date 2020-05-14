@@ -2,6 +2,7 @@ package com.example.tool;
 
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Path;
 import android.net.wifi.p2p.WifiP2pManager;
@@ -41,6 +42,11 @@ public class MainActivity extends AppCompatActivity {
     int number[]=imgId;
     int point2[] = point;
     int countri=1;
+
+    //nt[] use_card = new int [5];
+    int[] use_card = {0,0,0,0,0};
+
+
     poker countpoint = new poker();
 
     private Button puls;
@@ -79,11 +85,12 @@ public class MainActivity extends AppCompatActivity {
             int count = number.length - use;
             int p = (int) (Math.random() * count);
             you_poker.setImageResource(number[p]);
-
             use++;
 
             int list = count-1;
             nn.setText("剩餘牌數："+ list);
+
+            use_card[0] = point2[p];
 
             float a = countpoint.Score(point2[p]);
             nowpoint.setText("目前點數： "+String.valueOf(a));
@@ -108,14 +115,10 @@ public class MainActivity extends AppCompatActivity {
                 point2[i] = point2[i+1];
                 number[i] = number[i + 1];
             }
-
-
-
         }
 
 
     }
-
 
     private final Button.OnClickListener
             pulsLin = new Button.OnClickListener() {
@@ -128,17 +131,29 @@ public class MainActivity extends AppCompatActivity {
                         you_poker.setImageResource(number[p]);
                         use++;
                         rightp[countri].setImageResource(number[p]);
+                        use_card[countri] = point2[p];
+
                         countri++;
                         int list = count-1;
                         nn.setText("剩餘牌數："+ list);
 
                         float a = countpoint.Score(point2[p]);
+
                         if(a<=10.5)
                             nowpoint.setText("目前點數： "+ String.valueOf(a));
                         else {
-                            nowpoint.setText("爆點啦!");
-                            puls.setEnabled(false);
-                            inputpoint.setText("你目前點數: " + a);
+                            finish();
+                            Intent intent = new Intent();
+                            intent.setClass(MainActivity.this, end_page.class);
+
+
+                            Bundle bundle = new Bundle();
+                            bundle.putFloat("nowpoint",a);
+                            bundle.putIntArray("use_card",use_card);
+
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+
                         }
 
 
