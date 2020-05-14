@@ -41,8 +41,10 @@ public class MainActivity extends AppCompatActivity {
     int use=0;
     int number[]=imgId;
     int point2[] = point;
-    int countri=1;
-
+    int countri=0;
+    int Timefuntionpoker[]={0};
+    int toX=759;
+    int toY=-259;
     //nt[] use_card = new int [5];
     int[] use_card = {0,0,0,0,0};
 
@@ -83,8 +85,12 @@ public class MainActivity extends AppCompatActivity {
         if (use < HowManyCard) {
 
             int count = number.length - use;
-            int p = (int) (Math.random() * count);
+            int p  =(int) (Math.random() * count);
+            Timefuntionpoker[0]= number[p];
             you_poker.setImageResource(number[p]);
+
+            //rightp[0].setImageResource(number[Timefuntionpoker]);
+
             use++;
 
             int list = count-1;
@@ -101,12 +107,20 @@ public class MainActivity extends AppCompatActivity {
             ObjectAnimator.setDuration(1000);
             ObjectAnimator.start();
 */
-            Animation am = new TranslateAnimation(0,759,0,-259);
-            am.setDuration(5000);
+            Animation am = new TranslateAnimation(0,toX,0,toY);
+            am.setDuration(1800);
             you_poker.setAnimation(am);
             am.startNow();
-            Handler handler = new Handler();
-            rightp[0].setImageResource(number[p]);
+
+            puls.setEnabled(false);
+            new Handler().postDelayed(new Runnable(){
+                public void run() {
+                    rightp[0].setImageResource(Timefuntionpoker[0]);
+                    puls.setEnabled(true);
+                    you_poker.setImageResource(R.drawable.back);
+                }
+            }, 1800);
+
 
             countpoint.Score(point2[p]);
 
@@ -123,17 +137,31 @@ public class MainActivity extends AppCompatActivity {
     private final Button.OnClickListener
             pulsLin = new Button.OnClickListener() {
                 public void onClick(View v) {
-
+                    puls.setEnabled(false);
                     if (use < HowManyCard) {
 
                         int count = number.length - use;
                         int p = (int) (Math.random() * count);
+                        Timefuntionpoker[0]= number[p];
+                        countri++;
+
                         you_poker.setImageResource(number[p]);
                         use++;
-                        rightp[countri].setImageResource(number[p]);
+
+
+                        new Handler().postDelayed(new Runnable(){
+                            public void run() {
+                                rightp[countri].setImageResource(Timefuntionpoker[0]);
+                                you_poker.setImageResource(R.drawable.back);
+                                puls.setEnabled(true);
+                            }
+                        }, 1800);
+
+
+
                         use_card[countri] = point2[p];
 
-                        countri++;
+
                         int list = count-1;
                         nn.setText("剩餘牌數："+ list);
 
@@ -142,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                         if(a<=10.5)
                             nowpoint.setText("目前點數： "+ String.valueOf(a));
                         else {
+
                             finish();
                             Intent intent = new Intent();
                             intent.setClass(MainActivity.this, end_page.class);
@@ -155,6 +184,13 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
 
                         }
+                        toX-=60;
+                        toY+=45;
+                        Animation am = new TranslateAnimation(0,toX,0,toY);
+                        am.setDuration(1800);
+                        you_poker.setAnimation(am);
+                        am.startNow();
+
 
 
                         int i;
