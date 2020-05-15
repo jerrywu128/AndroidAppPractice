@@ -42,19 +42,21 @@ public class MainActivity extends AppCompatActivity {
     int number[]=imgId;
     int point2[] = point;
     int countri=0;
+    int counttr_computer = 1;
     int Timefuntionpoker[]={0};
     int toX=759;
     int toY=-259;
     //nt[] use_card = new int [5];
     int[] use_card = {0,0,0,0,0};
-
+    float ComputerNowPoint=0;
 
     poker countpoint = new poker();
-
-    private Button puls;
+    AI AIpoint = new AI();
+    private Button puls,stop;
     private ImageView pokerback,you_poker;
     private ImageView[] rightp = new ImageView[5];
-    private TextView nn,nowpoint,inputpoint,yy;
+    private ImageView[] lefttp = new ImageView[5];
+    private TextView nn,nowpoint,inputpoint,yy,computerpoint;
 
 
     android.animation.ObjectAnimator ObjectAnimator;
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
         pokerback = (ImageView)findViewById(R.id.pokerback);
         you_poker = (ImageView)findViewById(R.id.you_poker);
         nn = (TextView)findViewById(R.id.nn);
+        stop = (Button)findViewById(R.id.stop);
+        computerpoint = (TextView)findViewById(R.id.computerpoint);
 
         rightp[0] = (ImageView)findViewById(R.id.rightp);
         rightp[1] = (ImageView)findViewById(R.id.rightp2);
@@ -76,11 +80,17 @@ public class MainActivity extends AppCompatActivity {
         rightp[3] = (ImageView)findViewById(R.id.rightp4);
         rightp[4] = (ImageView)findViewById(R.id.rightp5);
 
+        lefttp[0] = (ImageView)findViewById(R.id.lefttp);
+        lefttp[1] = (ImageView)findViewById(R.id.lefttp2);
+        lefttp[2] = (ImageView)findViewById(R.id.lefttp3);
+        lefttp[3] = (ImageView)findViewById(R.id.lefttp4);
+        lefttp[4] = (ImageView)findViewById(R.id.lefttp5);
+
         nowpoint =(TextView)findViewById(R.id.nowpoint);
         inputpoint=(TextView)findViewById(R.id.inputpoint);
 
         puls.setOnClickListener(pulsLin);
-
+        stop.setOnClickListener(stopLin);
 
         if (use < HowManyCard) {
 
@@ -98,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
 
             use_card[0] = point2[p];
 
-            float a = countpoint.Score(point2[p]);
+            float a = countpoint.Score(point2[p],0);
             nowpoint.setText("目前點數： "+String.valueOf(a));
 /*
             android.graphics.Path path = new Path();
@@ -122,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             }, 1800);
 
 
-            countpoint.Score(point2[p]);
+            countpoint.Score(point2[p],0);
 
             int i;
             for (i = p; i < count - 1; i++) {
@@ -131,6 +141,27 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        if (use < HowManyCard) {
+
+            int count = number.length - use;
+            int p = (int) (Math.random() * count);
+
+            use++;
+
+            ComputerNowPoint = countpoint.Score(point2[p],1);
+            computerpoint.setText("目前點數："+String.valueOf(ComputerNowPoint));
+
+            lefttp[0].setImageResource(number[p]);
+
+            int list = count - 1;
+            nn.setText("剩餘牌數：" + list);
+
+            int i;
+            for (i = p; i < count - 1; i++) {
+                point2[i] = point2[i+1];
+                number[i] = number[i + 1];
+            }
+        }
 
     }
 
@@ -165,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
                         int list = count-1;
                         nn.setText("剩餘牌數："+ list);
 
-                        float a = countpoint.Score(point2[p]);
+                        float a = countpoint.Score(point2[p],0);
 
                         if(a<=10.5)
                             nowpoint.setText("目前點數： "+ String.valueOf(a));
@@ -203,6 +234,63 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             };
+    private Button.OnClickListener
+            stopLin = new Button.OnClickListener() {
+        public void onClick(View v) {
+
+            stop.setEnabled(false);
+            puls.setEnabled(false);
+
+            boolean determine = AIpoint.determine(ComputerNowPoint);
+
+            while (determine)
+            {
+                if (use < HowManyCard) {
+
+                    int count = number.length - use;
+                    int p = (int) (Math.random() * count);
+                    you_poker.setImageResource(number[p]);
+                    use++;
+                    lefttp[counttr_computer].setImageResource(number[p]);
+                    use_card[counttr_computer] = point2[p];
+
+                    counttr_computer++;
+                    int list = count - 1;
+                    nn.setText("剩餘排數" + list);
+
+                            ComputerNowPoint = countpoint.Score(point2[p], 1);
+
+                    if (ComputerNowPoint <= 10.5) {
+                        determine = AIpoint.determine(ComputerNowPoint);
+                        computerpoint.setText("目前點數："+ String.valueOf(ComputerNowPoint));
+                    } else {
+                        break;
+                        /*
+                        finish();
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, end_page.class);
+
+
+                        Bundle bundle = new Bundle();
+                        bundle.putFloat("nowpoint",a);
+                        bundle.putIntArray("use_card",use_card);
+
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                        */
+                    }
+
+
+                    int i;
+                    for (i = p; i < count - 1; i++) {
+                        point2[i] = point2[i + 1];
+                        number[i] = number[i + 1];
+                    }
+
+                }
+            }
+        }
+    };
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {//是否按下返回鍵

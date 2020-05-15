@@ -1,4 +1,4 @@
-package score;
+package com.example.tool;
 import java.util.Scanner;
 public class AI 
 {
@@ -35,7 +35,7 @@ public class AI
 		
 		while(true)
 		{
-			System.out.println("請輸入一個數字:");
+			System.out.println("嚙請選蕭J嚙瑾嚙諉數字:");
 			int input=scanner.nextInt();
 			System.out.println(det.determine(input));
 		}	

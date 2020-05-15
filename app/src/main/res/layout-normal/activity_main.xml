@@ -52,6 +52,17 @@
         app:layout_constraintStart_toEndOf="@+id/pokerback"
         app:srcCompat="@android:drawable/divider_horizontal_bright" />
 
+    <ImageView
+        android:id="@+id/rightp"
+        android:layout_width="107dp"
+        android:layout_height="171dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginLeft="176dp"
+        android:layout_marginBottom="96dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pokerback"
+        app:layout_constraintStart_toEndOf="@+id/pokerback"
+        app:srcCompat="@android:drawable/divider_horizontal_bright" />
+
     <Button
         android:id="@+id/stop"
         android:layout_width="153dp"
@@ -141,17 +152,6 @@
         app:layout_constraintVertical_bias="0.691"
         app:srcCompat="@android:drawable/divider_horizontal_bright" />
 
-    <ImageView
-        android:id="@+id/rightp"
-        android:layout_width="107dp"
-        android:layout_height="171dp"
-        android:layout_marginStart="176dp"
-        android:layout_marginLeft="176dp"
-        android:layout_marginBottom="96dp"
-        app:layout_constraintBottom_toBottomOf="@+id/pokerback"
-        app:layout_constraintStart_toEndOf="@+id/pokerback"
-        app:srcCompat="@android:drawable/divider_horizontal_bright" />
-
     <TextView
         android:id="@+id/nowpoint"
         android:layout_width="245dp"
@@ -178,12 +178,73 @@
         app:layout_constraintTop_toBottomOf="@+id/nn"
         app:layout_constraintVertical_bias="0.476" />
 
+    <ImageView
+        android:id="@+id/lefttp"
+        android:layout_width="107dp"
+        android:layout_height="171dp"
+        android:layout_marginEnd="472dp"
+        android:layout_marginRight="472dp"
+        android:layout_marginBottom="96dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pokerback"
+        app:layout_constraintEnd_toStartOf="@+id/rightp"
+        app:srcCompat="@android:drawable/divider_horizontal_bright" />
+
+    <ImageView
+        android:id="@+id/lefttp2"
+        android:layout_width="107dp"
+        android:layout_height="171dp"
+        android:layout_marginEnd="440dp"
+        android:layout_marginRight="440dp"
+        android:layout_marginBottom="84dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pokerback"
+        app:layout_constraintEnd_toStartOf="@+id/rightp2"
+        app:srcCompat="@android:drawable/divider_horizontal_bright" />
+
+    <ImageView
+        android:id="@+id/lefttp3"
+        android:layout_width="107dp"
+        android:layout_height="171dp"
+        android:layout_marginEnd="392dp"
+        android:layout_marginRight="392dp"
+        android:layout_marginBottom="68dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pokerback"
+        app:layout_constraintEnd_toStartOf="@+id/rightp3"
+        app:srcCompat="@android:drawable/divider_horizontal_bright" />
+
+    <ImageView
+        android:id="@+id/lefttp4"
+        android:layout_width="107dp"
+        android:layout_height="171dp"
+        android:layout_marginEnd="348dp"
+        android:layout_marginRight="348dp"
+        android:layout_marginBottom="48dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pokerback"
+        app:layout_constraintEnd_toStartOf="@+id/rightp4"
+        app:srcCompat="@android:drawable/divider_horizontal_bright" />
+
+    <ImageView
+        android:id="@+id/lefttp5"
+        android:layout_width="107dp"
+        android:layout_height="171dp"
+        android:layout_marginEnd="308dp"
+        android:layout_marginRight="308dp"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toBottomOf="@+id/pokerback"
+        app:layout_constraintEnd_toStartOf="@+id/rightp5"
+        app:srcCompat="@android:drawable/divider_horizontal_bright" />
+
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="223dp" />
+        android:id="@+id/computerpoint"
+        android:layout_width="245dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cat"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.017" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
