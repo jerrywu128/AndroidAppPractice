@@ -40,41 +40,60 @@ public class end_page extends AppCompatActivity {
         your_card[2] = (ImageView)findViewById(R.id.your_card3);
         your_card[3] = (ImageView)findViewById(R.id.your_card4);
         your_card[4] = (ImageView)findViewById(R.id.your_card5);
+
         computer_card[0] = (ImageView)findViewById(R.id.computer_card1);
         computer_card[1] = (ImageView)findViewById(R.id.computer_card2);
         computer_card[2] = (ImageView)findViewById(R.id.computer_card3);
         computer_card[3] = (ImageView)findViewById(R.id.computer_card4);
         computer_card[4] = (ImageView)findViewById(R.id.computer_card5);
+
         WinOrLose = (TextView)findViewById(R.id.WinOrLose);
+
         your_point = (TextView)findViewById(R.id.your_point);
         computer_point = (TextView)findViewById(R.id.computer_point);
+
         endgmae = (Button) findViewById(R.id.endgame);
         endgmae.setOnClickListener(endgmaeLin);
         restart = (Button)findViewById(R.id.restart);
         restart.setOnClickListener(reLin);
 
         Bundle bundle = getIntent().getExtras();
+
         float Y_point = bundle.getFloat("nowpoint");
         int use_card[] = bundle.getIntArray("use_card");
-        //int computer_use_card[] = bundle.getIntArray("computer_use_card");
+
+        float C_point = bundle.getFloat("C_point");
+        int computer_use_card[] = bundle.getIntArray("computer_use_card");
 
         for(int i =0;i < 5; i++)
         {
             your_card[i].setImageResource(imgId[use_card[i]]);
         }
 
-        /*
+
         for(int i =0;i < 5; i++)
         {
             computer_card[i].setImageResource(imgId[computer_use_card[i]]);
         }
-        */
+
 
         your_point.setText("你的點數："+Y_point);
+        computer_point.setText("莊家點數："+C_point);
 
         if(Y_point > 10.5)
         {
             WinOrLose.setText("爆點！Lose");
+        }else if (C_point > 10.5)
+        {
+            WinOrLose.setText("莊家爆點！Win");
+        }else if(Y_point > C_point)
+        {
+            WinOrLose.setText("You Win");
+        }else if(Y_point == C_point)
+        {
+            WinOrLose.setText("平手");
+        }else{
+            WinOrLose.setText("You Lose");
         }
 
     }

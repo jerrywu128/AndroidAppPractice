@@ -46,9 +46,13 @@ public class MainActivity extends AppCompatActivity {
     int Timefuntionpoker[]={0};
     int toX=759;
     int toY=-259;
-    //nt[] use_card = new int [5];
+
     int[] use_card = {0,0,0,0,0};
+    int[] computer_use_card = {0,0,0,0,0};
+
     float ComputerNowPoint=0;
+
+    Bundle bundle = new Bundle();
 
     poker countpoint = new poker();
     AI AIpoint = new AI();
@@ -156,6 +160,8 @@ public class MainActivity extends AppCompatActivity {
             int list = count - 1;
             nn.setText("剩餘牌數：" + list);
 
+            computer_use_card[0] = point2[p];
+
             int i;
             for (i = p; i < count - 1; i++) {
                 point2[i] = point2[i+1];
@@ -206,10 +212,10 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent();
                             intent.setClass(MainActivity.this, end_page.class);
 
-
-                            Bundle bundle = new Bundle();
                             bundle.putFloat("nowpoint",a);
                             bundle.putIntArray("use_card",use_card);
+                            bundle.putFloat("C_point",ComputerNowPoint);
+                            bundle.putIntArray("computer_use_card",computer_use_card);
 
                             intent.putExtras(bundle);
                             startActivity(intent);
@@ -221,7 +227,6 @@ public class MainActivity extends AppCompatActivity {
                         am.setDuration(1800);
                         you_poker.setAnimation(am);
                         am.startNow();
-
 
 
                         int i;
@@ -252,43 +257,45 @@ public class MainActivity extends AppCompatActivity {
                     you_poker.setImageResource(number[p]);
                     use++;
                     lefttp[counttr_computer].setImageResource(number[p]);
-                    use_card[counttr_computer] = point2[p];
+                    computer_use_card[counttr_computer] = point2[p];
 
                     counttr_computer++;
                     int list = count - 1;
                     nn.setText("剩餘排數" + list);
 
-                            ComputerNowPoint = countpoint.Score(point2[p], 1);
+                    ComputerNowPoint = countpoint.Score(point2[p], 1);
 
                     if (ComputerNowPoint <= 10.5) {
                         determine = AIpoint.determine(ComputerNowPoint);
                         computerpoint.setText("目前點數："+ String.valueOf(ComputerNowPoint));
                     } else {
                         break;
-                        /*
-                        finish();
-                        Intent intent = new Intent();
-                        intent.setClass(MainActivity.this, end_page.class);
-
-
-                        Bundle bundle = new Bundle();
-                        bundle.putFloat("nowpoint",a);
-                        bundle.putIntArray("use_card",use_card);
-
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-                        */
                     }
-
 
                     int i;
                     for (i = p; i < count - 1; i++) {
-                        point2[i] = point2[i + 1];
-                        number[i] = number[i + 1];
+                            point2[i] = point2[i + 1];
+                            number[i] = number[i + 1];
                     }
 
                 }
             }
+
+            finish();
+            Intent intent = new Intent();
+            intent.setClass(MainActivity.this, end_page.class);
+
+            //Bundle bundle_Computer = new Bundle();
+
+            float a = countpoint.Score(0,2);
+            bundle.putFloat("nowpoint",a);
+            bundle.putIntArray("use_card",use_card);
+            bundle.putFloat("C_point",ComputerNowPoint);
+            bundle.putIntArray("computer_use_card",computer_use_card);
+
+            intent.putExtras(bundle);
+            startActivity(intent);
+
         }
     };
 

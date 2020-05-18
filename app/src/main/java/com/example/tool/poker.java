@@ -33,7 +33,7 @@ public class poker {
 			}
 			return now;
 		}
-		else
+		else if(identity == 1)
 		{
 			if ((input % 13) > 10 || (input % 13) == 0) {
 				if (count < 2) {
@@ -53,6 +53,12 @@ public class poker {
 
 			}
 			return cnow;
+		}else if (identity==2)
+		{
+			return now;
+		}else
+		{
+			return 0;
 		}
 	}
 
