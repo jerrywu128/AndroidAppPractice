@@ -64,6 +64,7 @@ public class end_page extends AppCompatActivity {
 
         float C_point = bundle.getFloat("C_point");
         int computer_use_card[] = bundle.getIntArray("computer_use_card");
+        int PlayUse = bundle.getInt("PlayUse");
 
         for(int i =0;i < 5; i++)
         {
@@ -86,12 +87,9 @@ public class end_page extends AppCompatActivity {
         }else if (C_point > 10.5)
         {
             WinOrLose.setText("莊家爆點！Win");
-        }else if(Y_point > C_point)
+        }else if((Y_point > C_point)||(PlayUse == 5))
         {
             WinOrLose.setText("You Win");
-        }else if(Y_point == C_point)
-        {
-            WinOrLose.setText("平手");
         }else{
             WinOrLose.setText("You Lose");
         }

@@ -18,6 +18,7 @@
         </activity>
 
         <activity android:label="end_page" android:name=".end_page"/>
+        <activity android:label="start_page" android:name=".start_page"/>
 
     </application>
 

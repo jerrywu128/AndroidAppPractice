@@ -38,7 +38,7 @@ public class MainActivity  extends AppCompatActivity {
 
 
     int HowManyCard = imgId.length;
-    int use=0;
+    int totaluse=0,PlayerUse=0,ComputerUse=0;
     int number[]=imgId;
     int point2[] = point;
     int countri=0;
@@ -68,6 +68,12 @@ public class MainActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        finish();
+        Intent intent = new Intent();
+        intent.setClass(MainActivity.this, start_page.class);
+        startActivity(intent);
+
         setContentView(R.layout.activity_main);
 
         for(int i= 0;i<52;i++){
@@ -99,16 +105,17 @@ public class MainActivity  extends AppCompatActivity {
         puls.setOnClickListener(pulsLin);
         stop.setOnClickListener(stopLin);
 
-        if (use < HowManyCard) {
+        if (totaluse < HowManyCard) {
 
-            int count = number.length - use;
+            int count = number.length - totaluse;
             int p  =(int) (Math.random() * count);
             Timefuntionpoker[0]= number[p];
             you_poker.setImageResource(number[p]);
 
 
 
-            use++;
+            totaluse++;
+            PlayerUse++;
 
             int list = count-1;
             nn.setText("剩餘牌數："+ list);
@@ -142,12 +149,13 @@ public class MainActivity  extends AppCompatActivity {
             }
         }
 
-        if (use < HowManyCard) {
+        if (totaluse < HowManyCard) {
 
-            int count = number.length - use;
+            int count = number.length - totaluse;
             int p = (int) (Math.random() * count);
 
-            use++;
+            totaluse++;
+            ComputerUse++;
 
             ComputerNowPoint = countpoint.Score(point2[p],1);
             computerpoint.setText("目前點數："+String.valueOf(ComputerNowPoint));
@@ -172,15 +180,16 @@ public class MainActivity  extends AppCompatActivity {
             pulsLin = new Button.OnClickListener() {
                 public void onClick(View v) {
                     puls.setEnabled(false);
-                    if (use < HowManyCard) {
+                    if (totaluse < HowManyCard) {
 
-                        int count = number.length - use;
+                        int count = number.length - totaluse;
                         int p = (int) (Math.random() * count);
                         Timefuntionpoker[0]= number[p];
                         countri++;
 
                         you_poker.setImageResource(number[p]);
-                        use++;
+                        totaluse++;
+                        PlayerUse++;
 
 
                         new Handler().postDelayed(new Runnable(){
@@ -190,8 +199,6 @@ public class MainActivity  extends AppCompatActivity {
                                 puls.setEnabled(true);
                             }
                         }, 1800);
-
-
 
                         use_card[countri] = point2[p];
 
@@ -209,6 +216,7 @@ public class MainActivity  extends AppCompatActivity {
                             Intent intent = new Intent();
                             intent.setClass(MainActivity.this, end_page.class);
 
+                            bundle.putInt("PlayUse",PlayerUse);
                             bundle.putFloat("nowpoint",a);
                             bundle.putIntArray("use_card",use_card);
                             bundle.putFloat("C_point",ComputerNowPoint);
@@ -234,6 +242,24 @@ public class MainActivity  extends AppCompatActivity {
 
 
                     }
+
+                    if(PlayerUse == 5)//電腦一開始抽的
+                    {
+                        finish();
+                        Intent intent = new Intent();
+                        intent.setClass(MainActivity.this, end_page.class);
+                        float a = countpoint.Score(0,2);
+
+                        bundle.putInt("PlayUse",PlayerUse);
+                        bundle.putFloat("nowpoint",a);
+                        bundle.putIntArray("use_card",use_card);
+                        bundle.putFloat("C_point",ComputerNowPoint);
+                        bundle.putIntArray("computer_use_card",computer_use_card);
+
+                        intent.putExtras(bundle);
+                        startActivity(intent);
+                    }
+
                 }
             };
     private Button.OnClickListener
@@ -247,12 +273,15 @@ public class MainActivity  extends AppCompatActivity {
 
             while (determine)
             {
-                if (use < HowManyCard) {
+                if (totaluse < HowManyCard) {
 
-                    int count = number.length - use;
+                    int count = number.length - totaluse;
                     int p = (int) (Math.random() * count);
                     you_poker.setImageResource(number[p]);
-                    use++;
+
+                    totaluse++;
+                    ComputerUse++;
+
                     lefttp[counttr_computer].setImageResource(number[p]);
                     computer_use_card[counttr_computer] = point2[p];
 
@@ -262,7 +291,7 @@ public class MainActivity  extends AppCompatActivity {
 
                     ComputerNowPoint = countpoint.Score(point2[p], 1);
 
-                    if (ComputerNowPoint <= 10.5) {
+                    if ((ComputerNowPoint <= 10.5) && (ComputerUse != 5)) {
                         determine = AIpoint.determine(ComputerNowPoint);
                         computerpoint.setText("目前點數："+ String.valueOf(ComputerNowPoint));
                     } else {
@@ -285,6 +314,8 @@ public class MainActivity  extends AppCompatActivity {
             //Bundle bundle_Computer = new Bundle();
 
             float a = countpoint.Score(0,2);
+
+            bundle.putInt("PlayUse",PlayerUse);
             bundle.putFloat("nowpoint",a);
             bundle.putIntArray("use_card",use_card);
             bundle.putFloat("C_point",ComputerNowPoint);
