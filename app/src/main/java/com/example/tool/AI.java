@@ -24,21 +24,6 @@ public class AI
 		else
 		{
 			return false;
-		}	
-
+		}
 	}
-	/*
-	public static void main(String[] args)
-	{
-		AI det=new AI();
-		Scanner scanner = new Scanner(System.in);
-		
-		while(true)
-		{
-			System.out.println("�п�J�@�ӼƦr:");
-			int input=scanner.nextInt();
-			System.out.println(det.determine(input));
-		}	
-	}
-	*/
 }

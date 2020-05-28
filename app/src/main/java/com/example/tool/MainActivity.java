@@ -18,7 +18,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity  extends AppCompatActivity {
 
     int [] imgId ={R.drawable.f1,R.drawable.f2,R.drawable.f3,R.drawable.f4,R.drawable.f5,
             R.drawable.f6, R.drawable.f7,R.drawable.f8,R.drawable.f9,R.drawable.f10,
@@ -33,9 +33,9 @@ public class MainActivity extends AppCompatActivity {
             R.drawable.b6,R.drawable.b7,R.drawable.b8,R.drawable.b9,R.drawable.b10,
             R.drawable.b11,R.drawable.b12,R.drawable.b13,};
 
-    int[] point ={1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,
-            21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,
-            41,42,43,44,45,46,47,48,49,50,51,52};
+    int [] point = new int[52];
+
+
 
     int HowManyCard = imgId.length;
     int use=0;
@@ -70,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        for(int i= 0;i<52;i++){
+            point[i]=i+1;
+        }
 
         puls = (Button)findViewById(R.id.puls);
         pokerback = (ImageView)findViewById(R.id.pokerback);
@@ -103,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
             Timefuntionpoker[0]= number[p];
             you_poker.setImageResource(number[p]);
 
-            //rightp[0].setImageResource(number[Timefuntionpoker]);
+
 
             use++;
 
@@ -114,13 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
             float a = countpoint.Score(point2[p],0);
             nowpoint.setText("目前點數： "+String.valueOf(a));
-/*
-            android.graphics.Path path = new Path();
-            path.arcTo(500f,0f,1000f,800f,180f,140f,true);
-            ObjectAnimator= android.animation.ObjectAnimator.ofFloat(you_poker,View.X,View.Y,path);
-            ObjectAnimator.setDuration(1000);
-            ObjectAnimator.start();
-*/
+
             Animation am = new TranslateAnimation(0,toX,0,toY);
             am.setDuration(1800);
             you_poker.setAnimation(am);
