@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/AndroidAppPractice-app.iml" filepath="$PROJECT_DIR$/app/AndroidAppPractice-app.iml" group="tool/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="tool/app" />
       <module fileurl="file://$PROJECT_DIR$/tool.iml" filepath="$PROJECT_DIR$/tool.iml" group="tool" />
-      <module fileurl="file://$PROJECT_DIR$/app/tool-app.iml" filepath="$PROJECT_DIR$/app/tool-app.iml" group="tool/app" />
     </modules>
   </component>
 </project>
