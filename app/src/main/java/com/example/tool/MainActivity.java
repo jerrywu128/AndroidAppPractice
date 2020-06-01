@@ -53,12 +53,7 @@ public class MainActivity  extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-/*
-        finish();
-        Intent intent = new Intent();
-        intent.setClass(MainActivity.this, start_page.class);
-        startActivity(intent);
-*/
+
         setContentView(R.layout.activity_main);
 
         for(int i= 0;i<52;i++){

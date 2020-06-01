@@ -1,6 +1,5 @@
 package com.example.tool;
 
-import android.app.AppComponentFactory;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -27,7 +26,7 @@ public class end_page extends AppCompatActivity {
 
     private ImageView[] your_card = new ImageView[5];
     private ImageView[] computer_card = new ImageView[5];
-    private Button endgmae, restart;
+    private Button GoToStartpage, restart;
     private TextView WinOrLose, your_point, computer_point;
 
     @Override
@@ -52,8 +51,8 @@ public class end_page extends AppCompatActivity {
         your_point = (TextView)findViewById(R.id.your_point);
         computer_point = (TextView)findViewById(R.id.computer_point);
 
-        endgmae = (Button) findViewById(R.id.endgame);
-        endgmae.setOnClickListener(endgmaeLin);
+        GoToStartpage = (Button) findViewById(R.id.GoToStartpage);
+        GoToStartpage.setOnClickListener(GoToStartpageLin);
         restart = (Button)findViewById(R.id.restart);
         restart.setOnClickListener(reLin);
 
@@ -96,10 +95,13 @@ public class end_page extends AppCompatActivity {
 
     }
 
-    private Button.OnClickListener endgmaeLin =
+    private Button.OnClickListener GoToStartpageLin =
             new Button.OnClickListener(){
                 public void onClick(View V){
                     finish();
+                    Intent intent = new Intent();
+                    intent.setClass(end_page.this, start_page.class);
+                    startActivity(intent);
                 }
             };
 

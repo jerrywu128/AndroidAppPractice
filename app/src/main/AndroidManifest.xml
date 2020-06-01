@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".start_page">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,7 +18,10 @@
         </activity>
 
         <activity android:label="end_page" android:name=".end_page"/>
-        <activity android:label="start_page" android:name=".start_page"/>
+
+        <activity android:label=".MainActivity" android:name=".MainActivity"/>
+
+        <activity android:label="rule_page" android:name=".rule_page"/>
 
     </application>
 
